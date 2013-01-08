@@ -192,13 +192,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 				function view_design() {
 					
 					$('#' + _viewID).find('p').css({
-						'left': -1 * _viewW - 10
+						'left': -1 * _viewW - 10,
+						'z-index':0
 					})
-						.siblings('#bnrImg1').animate({
+					.siblings('#bnrImg1').animate({
 						opacity: 0,
 						left: 0
 					}, 0)
-						.animate({
+					.css('z-index',1000)
+					.animate({
 						opacity: 1
 					}, 500);
 					
@@ -374,16 +376,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 					}
 
 					//image change
+					$('#bnrImg p').addClass('change');
+					$('#bnrImg' + current).removeClass('change').css('left',0);
 					$('#bnrImg p').stop(true, false).animate({
 						opacity: 0
-					}, 0).animate({
-						left: _viewW * -1
-					}, 0),
-					$('#bnrImg' + current).animate({
-						left: 0
-					}, 0).animate({
-						opacity: 1
 					}, 300);
+					$('#bnrImg' + current).removeClass('change').animate({
+						opacity: 1
+					}, 300,function(){
+						$('#bnrImg p.change').css({'left': _viewW * -1,'z-index':0}).removeClass('change');
+					}).css('z-index',1000);
 				}
 
 
