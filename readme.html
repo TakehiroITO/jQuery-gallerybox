@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="Shift_JIS">
+<title>GalleryBOX</title>
+<script type="text/javascript" src="js/jquery.min.js?v=1.8.2" language="javascript"></script>
+<script type="text/javascript" src="js/jquery.gallrybox.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#bnrContent').galleryBox();
+});
+</script>
+<link rel="stylesheet" href="css/style.css">
+<style>
+pre { border: 1px solid #ccc; font-size: 12px; width: 500px; padding: 8px; background: #cfc; }
+</style>
+</head>
+<body>
+<h2>DEMO</h2>
+<div id="bnrArea">
+	<div id="bnrContent"><a href="#"><img src="images/image1.jpg" border="0" alt="TEST"></a></div>
+</div>
+<h2>OPTIONS</h2>
+<pre>
+<code>$('#bnrContent').galleryBox({
+	xmlPath: './setting.xml', // xml data path
+	viewW: 700, //gallery width
+	viewH: 240, //galery height
+	thumbW: 118, //thumbnails width
+	thumbH: 38, //thumbnails height;
+	thumbnail: 'auto', //thunbnail type
+	viewID: 'bnrImg',//gallery ID
+	ctrlID: 'bnrCtrl',//controler ID
+	background: '#000',//controler background
+	opacity: 0.6, //controler background opacity
+	delay: 8 // animation delay seconds
+});</code>
+</pre>
+<p>サムネイルをXMLで別途指定したい場合は</p>
+<pre>
+<code>$('#bnrContent').galleryBox({t
+	thumbnail: 'xml',
+});</code>
+</pre>
+<h2>XML</h2>
+<pre>
+<code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;gallryBox&gt;
+	&lt;component start="2012/12/25" end="2012/12/27"&gt;
+		&lt;item num="1"&gt;
+			&lt;img&gt;images/image1.jpg&lt;/img&gt;
+			&lt;url&gt;#test1&lt;/url&gt;
+			&lt;alt&gt;ALT TEXT&lt;/alt&gt;
+			&lt;thumb&gt;images/thumb1.jpg&lt;/thumb&gt;
+		&lt;/item&gt;
+		&lt;item num="2"&gt;
+			&lt;img&gt;images/image2.jpg&lt;/img&gt;
+			&lt;url&gt;#test1&lt;/url&gt;
+			&lt;alt&gt;ALT TEXT&lt;/alt&gt;
+			&lt;thumb&gt;images/thumb2.jpg&lt;/thumb&gt;
+		&lt;/item&gt;
+	&lt;/component&gt;
+&lt;/gallryBox&gt;</code>
+</pre>
+<p>itemの属性numは管理用に記載しているので、省略しても問題ありません。</p>
+<p>urlは省略できます。画像にリンクが不要な場合は削除してください。</p>
+<p>thumbは省略できます。サムネイルをXMLで指定したい場合、javascript側と併せて記述してください（上記参照）。</p>
+<p>XMLのcomponentの属性は startと endです。<br>
+	属性start endは省略可能です。</p>
+<p>startは表示開始、endは表示終了の日付です。<br>
+	書式は yyyy/MM/dd です。</p>
+<pre>
+<code>&lt;component start="0000/00/00"&gt;</code>
+</pre>
+<p>それぞれ時刻も指定できます。<br>
+	書式は yyyy/MM/dd HH:mm:ss です。</p>
+<pre>
+<code>&lt;component start="0000/00/00 00:00:00"&gt;</code>
+</pre>
+<p>componentは複数置くことができます。</p>
+<pre>
+<code>&lt;gallryBox&gt;
+	&lt;component&gt;
+		&lt;item&gt;
+			&lt;img&gt;images/image1.jpg&lt;/img&gt;
+			&lt;url&gt;#test1&lt;/url&gt;
+			&lt;alt&gt;ALT TEXT&lt;/alt&gt;
+			&lt;thumb&gt;images/thumb1.jpg&lt;/thumb&gt;
+		&lt;/item&gt;
+	&lt;/component&gt;
+	&lt;component&gt;
+		&lt;item&gt;
+			&lt;img&gt;images/image1.jpg&lt;/img&gt;
+			&lt;url&gt;#test1&lt;/url&gt;
+			&lt;alt&gt;ALT TEXT&lt;/alt&gt;
+			&lt;thumb&gt;images/thumb1.jpg&lt;/thumb&gt;
+		&lt;/item&gt;
+	&lt;/component&gt;
+&lt;/gallryBox&gt;</code>
+</pre>
+<p>この場合、表示可能になっている画像はcomponentをまたいで表示されます。</p>
+<h2>動作</h2>
+<p>画像が1枚のとき、画像だけ表示し、サムネイル無し<br>
+	画像が2～3枚のとき、サムネイルを表示して、表示されている画像に対応したサムネイルへマーカーが移動します。<br>
+	画像が4枚のとき、サムネイルを3枚表示してスクロールアニメーションします。<br>
+	画像が5枚以上のとき、サムネイルを5枚表示してスクロールアニメーションします。</p>
+</body>
+</html>
